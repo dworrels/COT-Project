@@ -27,7 +27,7 @@ A lightweight keyword-driven chatbot built in C++ that uses probabilistic finite
 
 ---
 
-EXMAPLE INTERACTION
+EXAMPLE INTERACTION
 > Please enter your statement:
 I want to update my order
 
