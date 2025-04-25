@@ -1,3 +1,5 @@
+// Monte Carlo tester, pulls functions from final.cpp, compile in the same folder.
+
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
@@ -16,7 +18,7 @@ int main()
     srand((unsigned)time(nullptr));
     // Initialize
     startProccess();
-    stateNode node = findNode(1);
+    stateNode* node = findNode(1);
 
     long TRIALS = 1000000;
     long counts[3] = {0,0,0};
@@ -25,9 +27,9 @@ int main()
     for (long i = 0; i < TRIALS; ++i)
     {
         ostringstream oss;
-        streambufold = cout.rdbuf(oss.rdbuf());
+        std::streambuf* old = std::cout.rdbuf(oss.rdbuf());
         out_put(node);
-        cout.rdbuf(old);
+        std::cout.rdbuf(old);
         string resp = oss.str();
 
         // Checks response with each state, counts for which it matches.
@@ -41,11 +43,11 @@ int main()
 
     // Output results
     cout << "Response 1: " << counts[0]
-         << " (" << counts[0]100.0/TRIALS << "%)\n"
-         << "Response 2: " << counts[1]
-         << " (" << counts[1]100.0/TRIALS << "%)\n"
-         << "Response 3: " << counts[2]
-         << " (" << counts[2]*100.0/TRIALS << "%)\n";
+        << " (" << counts[0] * 100.0 / TRIALS << "%)\n";
+    cout << "Response 2: " << counts[1]
+        << " (" << counts[1] * 100.0 / TRIALS << "%)\n";
+    cout << "Response 3: " << counts[2]
+        << " (" << counts[2] * 100.0 / TRIALS << "%)\n";
 
     return 0;
 }
