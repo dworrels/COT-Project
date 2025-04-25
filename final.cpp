@@ -380,6 +380,3 @@ int main()
 }
 
 #endif
-
-
-
